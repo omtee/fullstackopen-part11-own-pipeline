@@ -21,6 +21,7 @@ mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true, us
   })
 
 app.use(cors())
+app.use(express.static('./client/build'))
 app.use(express.json())
 
 app.use(middleware.requestLogger)
