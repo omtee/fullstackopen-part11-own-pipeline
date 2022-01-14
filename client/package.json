@@ -2,11 +2,15 @@
   "name": "bloglist-frontend",
   "version": "0.1.0",
   "engines": {
-    "node": "14.17.x"
+    "node": "14.17.x",
+    "npm": "6.14.x"
   },
   "private": true,
   "dependencies": {
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.6.3",
+    "eslint-plugin-jest": "^24.4.0",
     "axios": "^0.21.1",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
@@ -17,6 +21,7 @@
     "react-scripts": "4.0.1",
     "redux": "^4.1.1",
     "redux-thunk": "^2.3.0",
+    "redux-devtools-extension": "^2.13.9",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
@@ -53,11 +58,7 @@
   },
   "proxy": "http://localhost:3003",
   "devDependencies": {
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^11.2.7",
     "cypress": "^8.2.0",
-    "eslint-plugin-cypress": "^2.11.3",
-    "eslint-plugin-jest": "^24.4.0",
-    "redux-devtools-extension": "^2.13.9"
+    "eslint-plugin-cypress": "^2.11.3"
   }
 }
