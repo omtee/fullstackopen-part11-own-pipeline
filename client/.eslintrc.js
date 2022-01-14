@@ -14,7 +14,7 @@ module.exports = {
     'ecmaVersion': 2018,
     'sourceType': 'module'
   },
-  'plugins': [ 'react', 'jest', 'cypress' ],
+  'plugins': [ 'react', 'jest' ],
   'rules': {
     'indent': [ 'error', 2, { 'SwitchCase': 1 }],
     'linebreak-style': 0,
