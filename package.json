@@ -4,7 +4,8 @@
   "description": "Custom pipeline from bloglist app",
   "main": "index.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=production node index.js",
+    "start:prod": "cross-env NODE_ENV=production node index.js",
+    "start": "node index.js",
     "dev": "cross-env NODE_DEV=development nodemon index.js",
     "build": "cd client && npm run build",
     "deploy": "git push heroku main",
