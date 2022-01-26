@@ -1,0 +1,48 @@
+name: Deployment pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize]
+
+jobs:
+  simple_deployment_pipeline:
+   runs-on: ubuntu-18.04
+   steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: '0'
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+    - name: npm install
+      run: npm install
+    - name: lint server
+      run: npm run lint:server
+    - name: lint client
+      run: npm run lint:client
+    - name: build
+      run: npm run build
+    - name: test server
+      run: npm run test:server
+    - name: deploy to heroku
+      id: deploy
+      if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ', '), '#skip') }}
+      uses: akhileshns/heroku-deploy@v3.12.12
+      with:
+        heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+        heroku_app_name: ${{ secrets.HEROKU_APP }}
+        heroku_email: ${{ secrets.EMAIL }}
+        healthcheck: "https://${{ secrets.HEROKU_APP }}.herokuapp.com/health"
+        checkstring: "ok"
+        delay: 5
+        rollbackonhealthcheckfailed: true
+    - name: Bump version and push tag
+      if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ', '), '#skip') }}
+      uses: anothrNick/github-tag-action@1.36.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        DEFAULT_BUMP: 'patch'
