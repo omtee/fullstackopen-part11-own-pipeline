@@ -20,10 +20,8 @@ jobs:
         node-version: '12.x'
     - name: npm install
       run: npm install
-    - name: lint server
+    - name: lint
       run: npm run lint:server
-    - name: lint client
-      run: npm run lint:client
     - name: build
       run: npm run build
     - name: test server
