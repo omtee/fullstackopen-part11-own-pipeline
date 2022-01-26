@@ -24,8 +24,6 @@ jobs:
       run: npm run lint:server
     - name: build
       run: npm run build
-    - name: test server
-      run: npm run test:server
     - name: deploy to heroku
       id: deploy
       if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ', '), '#skip') }}
